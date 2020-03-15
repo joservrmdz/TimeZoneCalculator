@@ -1,0 +1,44 @@
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "io.ratpack:ratpack-gradle:1.7.6"
+    }
+}
+
+apply plugin: "io.ratpack.ratpack-java"
+apply plugin: "idea"
+apply plugin: 'groovy'
+
+repositories {
+    jcenter()
+}
+
+ext {
+    spockVersion = '1.2-groovy-2.5'
+    jupiterVersion = '5.3.0'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compileOnly "org.codehaus.groovy:groovy-all:3.0.1"
+    implementation ratpack.dependency("guice")
+    implementation ratpack.dependency("groovy")
+    implementation 'com.google.code.gson:gson:2.8.6'
+    runtimeOnly "org.slf4j:slf4j-simple:1.7.25"
+    testImplementation "org.spockframework:spock-core:$spockVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiterVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiterVersion"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$jupiterVersion"
+    implementation "io.ratpack:ratpack-gradle:1.7.6"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+mainClassName = "org.timezonecalculator.Server"
