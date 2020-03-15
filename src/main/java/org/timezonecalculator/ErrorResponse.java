@@ -1,4 +1,4 @@
-package org.timezonecalculator.timezonedb.transport;
+package org.timezonecalculator;
 
 public class ErrorResponse {
 

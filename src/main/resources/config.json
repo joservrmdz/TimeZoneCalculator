@@ -1,6 +1,6 @@
 {
   "app": {
-    "apiKey": "3IEQDGPTOLJY",
+    "apiKey": "",
     "url": "http://vip.timezonedb.com/v2.1/get-time-zone?key=%s&format=json&by=city&city=%s&country=%s"
   }
 }

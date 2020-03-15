@@ -3,7 +3,7 @@ package org.timezonecalculator.timezonedb;
 import org.junit.platform.commons.util.StringUtils;
 import org.timezonecalculator.timezonedb.config.TimeZoneDBConfig;
 import org.timezonecalculator.timezonedb.parsers.TimeZoneDBParser;
-import org.timezonecalculator.timezonedb.transport.ErrorResponse;
+import org.timezonecalculator.ErrorResponse;
 import ratpack.handling.Context;
 import ratpack.handling.Handler;
 import ratpack.http.MediaType;
