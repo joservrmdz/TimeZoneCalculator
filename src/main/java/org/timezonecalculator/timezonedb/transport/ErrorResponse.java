@@ -1,10 +1,10 @@
 package org.timezonecalculator.timezonedb.transport;
 
-public class ErrorMessage {
+public class ErrorResponse {
 
     private final String errorMessage;
 
-    public ErrorMessage(String errorMessage) {
+    public ErrorResponse(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

@@ -14,6 +14,7 @@ public class Zones {
     private String formatted;
     private String abbreviation;
 
+
     public String getAbbreviation() {
         return abbreviation;
     }
@@ -40,12 +41,14 @@ public class Zones {
         return regionName;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Zones)) return false;
         Zones zones = (Zones) o;
-        return Objects.equals(getCountryCode(), zones.getCountryCode()) &&
+        return timestamp == zones.timestamp &&
+                Objects.equals(getCountryCode(), zones.getCountryCode()) &&
                 Objects.equals(getCountryName(), zones.getCountryName()) &&
                 Objects.equals(getCityName(), zones.getCityName()) &&
                 Objects.equals(getRegionName(), zones.getRegionName()) &&
@@ -54,6 +57,6 @@ public class Zones {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCountryCode(), getCountryName(), getCityName(), getRegionName(), getAbbreviation());
+        return Objects.hash(getCountryCode(), getCountryName(), getCityName(), getRegionName(), timestamp, getAbbreviation());
     }
 }

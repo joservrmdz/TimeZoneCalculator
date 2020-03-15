@@ -1,7 +1,7 @@
 package org.timezonecalculator.timezonedb.parsers;
 
 import com.google.gson.Gson;
-import org.timezonecalculator.timezonedb.transport.ErrorMessage;
+import org.timezonecalculator.timezonedb.transport.ErrorResponse;
 import org.timezonecalculator.timezonedb.transport.Results;
 import ratpack.jackson.JsonRender;
 
@@ -17,7 +17,7 @@ public class TimeZoneDBResponseParserImpl implements TimeZoneDBParser {
         if (results.getStatus().equals(TIMEZONEDB_OK_RESPONSE_STATUS)) {
             return json(results);
         } else {
-            return json(new ErrorMessage(results.getMessage()));
+            return json(new ErrorResponse(results.getMessage()));
         }
     }
 
