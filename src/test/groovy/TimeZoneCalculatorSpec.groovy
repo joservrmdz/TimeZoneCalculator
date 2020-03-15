@@ -31,7 +31,7 @@ class TimeZoneCalculatorSpec extends Specification {
         TZ == "[CET]"
     }
 
-    def "returns error messaage for request with misssing City"(){
+    def "returns 'Please type in a city.' when the city parameter is missing."(){
         given:
         def json = new JsonSlurper()
 
@@ -44,7 +44,7 @@ class TimeZoneCalculatorSpec extends Specification {
 
     }
 
-    def "returns error message with the City"(){
+    def "returns 'Record not found' when the city doesn't exist"(){
         given:
         def json = new JsonSlurper()
 
