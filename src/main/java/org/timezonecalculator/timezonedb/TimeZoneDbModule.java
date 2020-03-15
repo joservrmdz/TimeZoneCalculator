@@ -9,5 +9,6 @@ public final class TimeZoneDbModule extends AbstractModule {
     protected void configure() {
         bind(TimeZoneHandler.class);
         bind(TimeZoneDBParser.class).to(TimeZoneDBResponseParserImpl.class);
+        bind(ParametersExtractor.class);
     }
 }

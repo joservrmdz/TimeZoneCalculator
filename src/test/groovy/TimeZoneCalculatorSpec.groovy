@@ -31,22 +31,31 @@ class TimeZoneCalculatorSpec extends Specification {
         TZ == "[CET]"
     }
 
-    def "returns more than one result for Springfield, USA"(){
+    def "returns error messaage for request with misssing City"(){
         given:
         def json = new JsonSlurper()
 
         when:
-        def response = mainClassApplicationUnderTest.httpClient.get("time?city=Springfield&country=US")
+        def response = mainClassApplicationUnderTest.httpClient.get("time?city=&country=US")
 
         then:
         def results = json.parseText(response.body.text)
-        println results
-        results.zones[0].countryCode ==  "US"
-
+        results.errorMessage ==  "Please type in a city."
 
     }
 
+    def "returns error message with the City"(){
+        given:
+        def json = new JsonSlurper()
 
+        when:
+        def response = mainClassApplicationUnderTest.httpClient.get("time?city=Barcelona&country=HN")
+
+        then:
+        def results = json.parseText(response.body.text)
+        results.errorMessage ==  "Record not found."
+
+    }
 
 
 }
