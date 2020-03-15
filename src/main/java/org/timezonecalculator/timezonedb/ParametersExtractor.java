@@ -18,7 +18,7 @@ public class ParametersExtractor {
         return Promise.value(URLEncoder.encode(context.getRequest().getQueryParams().get(CITY_QUERY_PARAM),
                 "UTF-8"))
                 .route(
-                        city -> StringUtils.isBlank(city),
+                        StringUtils::isBlank,
                         city -> context.render(json(new ErrorResponse(PLEASE_TYPE_IN_A_CITY_MESSAGE))));
 
 

@@ -17,11 +17,9 @@ import static ratpack.jackson.Jackson.json;
 
 @Singleton
 public final class TimeZoneHandler implements Handler {
-    private static final String CITY_QUERY_PARAM = "city";
     private static final String COUNTRY_QUERY_PARAM = "country";
     private static final String ACCEPT_HEADER = "Accept";
     private static final String COULD_NOT_ENCODE_CITY_NAME_MESSAGE = "Couldn't encode city name";
-    private static final String UTF_8 = "UTF-8";
     private final TimeZoneDBParser timeZoneDBParser;
     private final HttpClient httpClient;
     private final ParametersExtractor parametersExtractor;
@@ -58,7 +56,7 @@ public final class TimeZoneHandler implements Handler {
         httpClient.get(timeZoneDBApiURI, requestSpec ->
                 requestSpec.getHeaders().set(ACCEPT_HEADER, MediaType.APPLICATION_JSON))
                 .map(receivedResponse -> timeZoneDBParser.parse(receivedResponse.getBody().getText()))
-                .then(response -> ctx.render(response));
+                .then(ctx::render);
     }
 
 }
