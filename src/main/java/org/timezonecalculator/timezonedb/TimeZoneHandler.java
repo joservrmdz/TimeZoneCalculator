@@ -18,18 +18,20 @@ import java.net.URLEncoder;
 import static ratpack.jackson.Jackson.json;
 
 @Singleton
-public class TimeZoneHandler implements Handler {
+public final class TimeZoneHandler implements Handler {
     private static final String CITY_QUERY_PARAM = "city";
     private static final String COUNTRY_QUERY_PARAM = "country";
     private static final String ACCEPT_HEADER = "Accept";
     private static final String PLEASE_TYPE_IN_A_CITY_MESSAGE = "Please type in a city.";
-    private static final String COULDN_T_ENCODE_CITY_NAME_MESSAGE = "Couldn't encode city name";
+    private static final String COULD_NOT_ENCODE_CITY_NAME_MESSAGE = "Couldn't encode city name";
     private static final String UTF_8 = "UTF-8";
     private final TimeZoneDBParser timeZoneDBParser;
+    private final HttpClient httpClient;
 
     @Inject
-    public TimeZoneHandler(TimeZoneDBParser timeZoneDBParser) {
+    public TimeZoneHandler(TimeZoneDBParser timeZoneDBParser, HttpClient httpClient) {
         this.timeZoneDBParser = timeZoneDBParser;
+        this.httpClient = httpClient;
     }
 
     @Override
@@ -39,7 +41,6 @@ public class TimeZoneHandler implements Handler {
             String city = URLEncoder.encode(ctx.getRequest().getQueryParams().get(CITY_QUERY_PARAM), UTF_8);
 
             String country = ctx.getRequest().getQueryParams().get(COUNTRY_QUERY_PARAM);
-            HttpClient httpClient = ctx.get(HttpClient.class);
             if (StringUtils.isNotBlank(city)) {
                 URI timeZoneDBApiURI = URI.create(
                         String.format(
@@ -49,12 +50,13 @@ public class TimeZoneHandler implements Handler {
                                 country));
                 httpClient.get(timeZoneDBApiURI, requestSpec ->
                         requestSpec.getHeaders().set(ACCEPT_HEADER, MediaType.APPLICATION_JSON))
-                        .then(response -> ctx.render(timeZoneDBParser.parse(response.getBody().getText())));
+                        .map(receivedResponse -> timeZoneDBParser.parse(receivedResponse.getBody().getText()))
+                        .then(response -> ctx.render(response));
             } else {
                 ctx.render(json(new ErrorResponse(PLEASE_TYPE_IN_A_CITY_MESSAGE)));
             }
         } catch (UnsupportedEncodingException e) {
-            ctx.render(json(new ErrorResponse(COULDN_T_ENCODE_CITY_NAME_MESSAGE)));
+            ctx.render(json(new ErrorResponse(COULD_NOT_ENCODE_CITY_NAME_MESSAGE)));
         }
     }
 

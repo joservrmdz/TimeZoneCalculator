@@ -8,7 +8,7 @@ import ratpack.guice.Guice;
 import ratpack.server.RatpackServer;
 import ratpack.server.ServerConfig;
 
-public class Server {
+public final class Server {
     static final String APPLICATION_IS_UP = "Application is Up.";
     private static final String TIME = "time";
 
