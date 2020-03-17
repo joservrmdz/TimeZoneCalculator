@@ -1,4 +1,4 @@
-# Time and TimeZoneCalculator Assumptions
+# Time and TimeZoneCalculator 
 
 ## Use Cases Implementation
 A description of the implementation of the use cases described in the instructions is detailed below.
