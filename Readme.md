@@ -11,12 +11,12 @@ this is a fixed value from the dropdown and was it not requested in the instruct
 
 #### 2. Submitting a city name that is not known 
 When the user submits a "city and country" pair that's not known by the timezoneDB, the response of the request will be 
-parsed and the field "status" of the payload will be checked. Since it's value will be different than "OK", we know the
+parsed and the field "status" of the payload will be checked. Since its value will be different than "OK", we know the
 the city was not found. 
 In that case the server will return: `Sorry, We couldn't find that city. Please try a different one.`
 
 #### 3. Submitting a city name that is not unique
-When the user submits a "city " whose name exists more than one in a country, all the results found for that query by 
+When the user submits a "city " whose name exists in more than one country, all the results found for that query by 
 timezoneDB will be returned to the client.
 
 ## Testing
@@ -37,14 +37,19 @@ ensure we will have a valid url to make the request.
 ## FrontEnd
 I tried to use the GroovyMarkupTemplates available in Ratpack but I couldn't find much documentation on them and my IDE
 doesn't offer support for it. So I decided use plain HTML file with a form for the input fields and a button that makes 
-the HTTPRequest to the server and renders the response using Handlebars.
+the HTTPRequest to the server and renders the response using [HandlebarsJS](https://handlebarsjs.com/guide/#what-is-handlebars).
 
 ## Design
 Most of the job is done on the TimeZoneHandler. I would've preferred to extract some of that logic to other classes to 
 have a better separation of concerns. For example wrap the **httpClient** on a service and inject 
 this service in the Handler as imo an HttpClient is more low level. I've seen several examples on github where the `HttpClient` is 
-obtained from the `Context` but I'm not sure this is the best design approach. Unfortunately, I need to be a bit more 
-proficient with Ratpack's API to achieve that. 
+obtained from the `Context` but I'm not sure this is the best design approach. Unfortunately, I need to be more 
+proficient in Ratpack's API to achieve this extraction. 
+
+## Configuration
+The configuration exists on the Ratpack root folder (src/main/java/resources) on a file called **config.json**. There 
+are other ways to provision this config in Ratpack but I chose this one. I left the the api key there so it can be 
+easily tested but it should be provided by the environment and not hard coded on production.
 
 
 
