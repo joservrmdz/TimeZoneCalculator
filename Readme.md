@@ -20,10 +20,17 @@ When the user submits a "city " whose name exists more than one in a country, al
 timezoneDB will be returned to the client.
 
 ## Testing
-I wrote a Spock spec tha covers all the Use Cases described above.
+The tests I wrote are written in Spock and they cover all the Use Cases described above.
+
+## Input Data
+One of the countries I picked for the dropdown is Honduras.
+Here are some cities that can be used for testing Honduras so you don't have to look them up:
+- Tegucigalpa
+- Comayagua
+- San Pedro Sula
 
 ## Validations
-- I'm UriEncoding the city in the case the user submits a city with whitespaces. For example, "New York, USA". This will 
+- I'm UriEncoding the city in the case the user submits a city with whitespaces. For example, "Los Angeles, USA". This will 
 ensure we will have a valid url to make the request.
 - As described in the first point of this section there's also a validation for when the user submits an "empty city".
 
