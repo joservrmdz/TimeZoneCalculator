@@ -43,7 +43,8 @@ the HTTPRequest to the server and renders the response using Handlebars.
 Most of the job is done on the TimeZoneHandler. I would've preferred to extract some of that logic to other classes to 
 have a better separation of concerns. For example wrap the **httpClient** on a service and inject 
 this service in the Handler as imo an HttpClient is more low level. I've seen several examples on github where the `HttpClient` is 
-obtained from the `Context` but I'm not sure this is the best design approach. Unfortunately, I'm not familiar with Ratpack's Promises to do it. 
+obtained from the `Context` but I'm not sure this is the best design approach. Unfortunately, I need to be a bit more 
+proficient with Ratpack's API to achieve that. 
 
 
 
