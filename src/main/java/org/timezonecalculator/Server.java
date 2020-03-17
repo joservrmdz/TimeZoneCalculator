@@ -16,9 +16,7 @@ public final class Server {
             ServerConfig serverConfig = getConfig();
             spec
                     .serverConfig(serverConfig)
-                    .registry(Guice.registry(registry -> {
-                        registry.module(TimeZoneDbModule.class);
-                    }))
+                    .registry(Guice.registry(registry -> registry.module(TimeZoneDbModule.class)))
                     .handlers(chain -> chain
                             .path(TIME, TimeZoneHandler.class)
                             .files(f -> f.dir("public").indexFiles("index.html")));

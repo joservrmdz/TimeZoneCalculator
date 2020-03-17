@@ -8,8 +8,6 @@ import javax.inject.Singleton;
 
 @Singleton
 public class TimeZoneURIBuilder {
-    public TimeZoneURIBuilder() {
-    }
 
     public String getTimeZoneURI(String city, Context ctx, String country) {
         return String.format(
