@@ -1,7 +1,7 @@
 package org.timezonecalculator;
 
 import org.timezonecalculator.timezonedb.TimeZoneDbModule;
-import org.timezonecalculator.timezonedb.TimeZoneHandler;
+import org.timezonecalculator.timezonedb.handlers.TimeZoneHandler;
 import org.timezonecalculator.timezonedb.config.TimeZoneDBConfig;
 import ratpack.guice.Guice;
 import ratpack.server.RatpackServer;
@@ -13,7 +13,7 @@ public final class Server {
     public static void main(String... args) throws Exception {
 
         RatpackServer server = RatpackServer.of(spec -> {
-            ServerConfig serverConfig = getBuild();
+            ServerConfig serverConfig = getConfig();
             spec
                     .serverConfig(serverConfig)
                     .registry(Guice.registry(registry -> {
@@ -21,15 +21,13 @@ public final class Server {
                     }))
                     .handlers(chain -> chain
                             .path(TIME, TimeZoneHandler.class)
-                            .files(f -> {
-                                f.dir("public").indexFiles("index.html");
-                            }));
+                            .files(f -> f.dir("public").indexFiles("index.html")));
         });
         server.start();
     }
 
 
-    private static ServerConfig getBuild() {
+    private static ServerConfig getConfig() {
         return ServerConfig
                 .embedded()
                 .port(5050)

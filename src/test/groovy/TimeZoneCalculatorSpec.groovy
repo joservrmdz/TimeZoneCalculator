@@ -26,17 +26,17 @@ class TimeZoneCalculatorSpec extends Specification {
         def response = getTimeZone "time?city=&country=US"
 
         then:
-        json.parseText(response.body.text).errorMessage == "Please type in a city."
+        json.parseText(response.body.text).errorMessage == "Bad Request: Please type in a city."
 
     }
 
     def "returns message: 'Record not found' when the city doesn't exist"() {
         when:
-        def response = getTimeZone("time?city=Barcelona&country=HN")
+        def response = getTimeZone"time?city=Barcelona&country=HN"
 
         then:
         def errorResponse = json.parseText(response.body.text)
-        errorResponse.errorMessage == "Record not found."
+        errorResponse.errorMessage == "Sorry, We couldn't find a time and timezone for that city. Please try a different one."
 
     }
 

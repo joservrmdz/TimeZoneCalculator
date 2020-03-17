@@ -1,15 +1,12 @@
-package org.timezonecalculator.timezonedb.parsers;
+package org.timezonecalculator.timezonedb.services;
 
-import com.google.gson.Gson;
-import org.timezonecalculator.ErrorResponse;
+import org.timezonecalculator.timezonedb.transport.ErrorResponse;
 import org.timezonecalculator.timezonedb.transport.Results;
 import ratpack.jackson.JsonRender;
 
 import static ratpack.jackson.Jackson.json;
 
 public final class TimeZoneDBResponseParserImpl implements TimeZoneDBParser {
-    private static final String TIME_ZONE_DB_OK_RESPONSE_STATUS = "OK";
-    private final Gson gson = new Gson();
 
     @Override
     public final JsonRender parse(String responseText) {
@@ -17,7 +14,7 @@ public final class TimeZoneDBResponseParserImpl implements TimeZoneDBParser {
         if (results.getStatus().equals(TIME_ZONE_DB_OK_RESPONSE_STATUS)) {
             return json(results);
         } else {
-            return json(new ErrorResponse(results.getMessage()));
+            return json(new ErrorResponse(CITY_NOT_FOUND_RESPONSE));
         }
     }
 
