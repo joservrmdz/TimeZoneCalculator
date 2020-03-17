@@ -36,13 +36,9 @@ public final class TimeZoneHandler implements Handler {
     @Override
     public void handle(Context ctx) {
 
-        try {
             parametersExtractor.getCity(ctx)
                     .then(city -> getTimeZone(city, ctx));
 
-        } catch (UnsupportedEncodingException e) {
-            ctx.render(json(new ErrorResponse(COULD_NOT_ENCODE_CITY_NAME_MESSAGE)));
-        }
     }
 
     private void getTimeZone(String city, Context ctx) {
