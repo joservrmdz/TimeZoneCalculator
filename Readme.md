@@ -6,7 +6,7 @@ A description of the implementation of the use cases described in the instructio
 
 When the user submits an empty city name, the server will validate the city parameter and will not make an unnecessary 
 request to the TimeZoneDB API as I know it's already a bad request. 
-It will respond with the message `Bad Request: Please type in a city.` I'm not validating the country parameter because 
+It will answer the client with the message `Bad Request: Please type in a city.` I'm not validating the country parameter because 
 this is a fixed value from the dropdown and was it not requested in the instructions. 
 
 #### 2. Submitting a city name that is not known 
@@ -17,7 +17,10 @@ In that case the server will return: `Sorry, We couldn't find that city. Please 
 
 #### 3. Submitting a city name that is not unique
 When the user submits a "city " whose name exists more than one in a country, all the results found for that query by 
-timezoneDB will be returned to the client. 
+timezoneDB will be returned to the client.
+
+## Testing
+I wrote a Spock spec tha covers all the Use Cases described above.
 
 ## Validations
 - I'm UriEncoding the city in the case the user submits a city with whitespaces. For example, "New York, USA". This will 
@@ -32,9 +35,8 @@ the HTTPRequest to the server and renders the response using Handlebars.
 ## Design
 Most of the job is done on the TimeZoneHandler. I would've preferred to extract some of that logic to other classes to 
 have a better separation of concerns. For example wrap the **httpClient** on a service and inject 
-this service in the Handler as imo an HttpClient is more low level. I've seen several examples on github where this is 
-done but I think it's the best approach. Unfortunately, I'm not familiar with the Ratpack Promises to do it. 
-Specially with `Promises`.
+this service in the Handler as imo an HttpClient is more low level. I've seen several examples on github where the `HttpClient` is 
+obtained from the `Context` but I'm not sure this is the best design approach. Unfortunately, I'm not familiar with Ratpack's Promises to do it. 
 
 
 

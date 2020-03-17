@@ -21,7 +21,7 @@ class TimeZoneCalculatorSpec extends Specification {
         result.zones[0].abbreviation == "CET"
     }
 
-    def "returns message: 'Please type in a city.' when the city parameter is missing."() {
+    def "Returns message: 'Bad Request: Please type in a city.' when the city parameter is missing."() {
         when:
         def response = getTimeZone "time?city=&country=US"
 
@@ -30,7 +30,7 @@ class TimeZoneCalculatorSpec extends Specification {
 
     }
 
-    def "returns message: 'Record not found' when the city doesn't exist"() {
+    def "Returns message: 'Sorry, We couldn't find a time and timezone for that city. Please try a different one.' when the city doesn't exist."() {
         when:
         def response = getTimeZone"time?city=Barcelona&country=HN"
 
@@ -40,7 +40,7 @@ class TimeZoneCalculatorSpec extends Specification {
 
     }
 
-    def "returns 'WET' as Timezone for Las Palmas, Spain"() {
+    def "Returns 'WET' as Timezone for Las Palmas, Spain."() {
         when:
         def response = getTimeZone "time?city=Las+Palmas&country=ES"
 
@@ -50,7 +50,7 @@ class TimeZoneCalculatorSpec extends Specification {
 
     }
 
-    def "returns 'HN' as Timezone for Tegucigalpa, Honduras"() {
+    def "Returns 'HN' as Timezone for Tegucigalpa, Honduras."() {
         when:
         def response = getTimeZone "time?city=Tegucigalpa&country=HN"
 
@@ -60,7 +60,7 @@ class TimeZoneCalculatorSpec extends Specification {
 
     }
 
-    def "returns 10 results for Springfield, US"() {
+    def "Returns 10 results for Springfield, US."() {
         when:
         def response = getTimeZone "time?city=Springfield&country=US"
 
