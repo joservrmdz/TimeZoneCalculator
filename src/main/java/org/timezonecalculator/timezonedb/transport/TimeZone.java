@@ -2,7 +2,7 @@ package org.timezonecalculator.timezonedb.transport;
 
 import java.util.Set;
 
-public class Results {
+public class TimeZone {
     private String status;
     private String message;
     private String totalPage;

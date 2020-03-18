@@ -37,9 +37,9 @@
     </div>
 
 </div>
-<div style="padding: 1.5rem; display : none" class="container" id="results">
+<div style="padding: 1.5rem; display : none" class="container" id="timeZone">
     <h2>Results</h2>
-    <script id="results-template" type="text/x-handlebars-template">
+    <script id="timeZone-template" type="text/x-handlebars-template">
         {{#each zones}}
         <li>Current time in {{cityName}}, {{regionName}} - {{countryName}} : {{formatted}} {{abbreviation}}</li>
         {{/each}}
@@ -47,7 +47,7 @@
     <div id="error-message">
 
     </div>
-    <ul id="results-list-container">
+    <ul id="timeZone-list-container">
     </ul>
 
 </div>

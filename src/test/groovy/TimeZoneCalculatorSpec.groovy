@@ -1,6 +1,6 @@
 import groovy.json.JsonSlurper
 import org.timezonecalculator.Server
-import org.timezonecalculator.timezonedb.transport.Results
+import org.timezonecalculator.timezonedb.transport.TimeZone
 import ratpack.http.client.ReceivedResponse
 import ratpack.test.MainClassApplicationUnderTest
 import spock.lang.Shared
@@ -17,7 +17,7 @@ class TimeZoneCalculatorSpec extends Specification {
         def response = getTimeZone "time?city=Barcelona&country=ES"
 
         then:
-        def result = json.parseText(response.body.text) as Results
+        def result = json.parseText(response.body.text) as TimeZone
         result.zones[0].abbreviation == "CET"
     }
 
@@ -45,7 +45,7 @@ class TimeZoneCalculatorSpec extends Specification {
         def response = getTimeZone "time?city=Las+Palmas&country=ES"
 
         then:
-        def results = json.parseText(response.body.text) as Results
+        def results = json.parseText(response.body.text) as TimeZone
         results.zones[0].abbreviation == "WET"
 
     }
@@ -55,7 +55,7 @@ class TimeZoneCalculatorSpec extends Specification {
         def response = getTimeZone "time?city=Tegucigalpa&country=HN"
 
         then:
-        def results = json.parseText(response.body.text) as Results
+        def results = json.parseText(response.body.text) as TimeZone
         results.zones[0].abbreviation == "CST"
 
     }
@@ -65,7 +65,7 @@ class TimeZoneCalculatorSpec extends Specification {
         def response = getTimeZone "time?city=Springfield&country=US"
 
         then:
-        def results = json.parseText(response.body.text) as Results
+        def results = json.parseText(response.body.text) as TimeZone
         results.zones.size() == 10
 
     }
