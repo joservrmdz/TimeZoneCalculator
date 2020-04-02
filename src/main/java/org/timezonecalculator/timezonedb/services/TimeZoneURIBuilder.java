@@ -2,17 +2,23 @@ package org.timezonecalculator.timezonedb.services;
 
 import org.timezonecalculator.timezonedb.config.TimeZoneDBConfig;
 import org.yaml.snakeyaml.util.UriEncoder;
-import ratpack.handling.Context;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
 public class TimeZoneURIBuilder {
+    private TimeZoneDBConfig timeZoneDBConfig;
 
-    public String getTimeZoneURI(String city, Context ctx, String country) {
+    @Inject
+    public TimeZoneURIBuilder(TimeZoneDBConfig timeZoneDBConfig) {
+        this.timeZoneDBConfig = timeZoneDBConfig;
+    }
+
+    public String getTimeZoneURI(String city, String country) {
         return String.format(
-                ctx.get(TimeZoneDBConfig.class).getUrl(),
-                ctx.get(TimeZoneDBConfig.class).getApiKey(),
+                timeZoneDBConfig.getUrl(),
+                timeZoneDBConfig.getApiKey(),
                 UriEncoder.encode(city),
                 country);
     }
