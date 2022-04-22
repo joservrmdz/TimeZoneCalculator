@@ -49,7 +49,7 @@ proficient in Ratpack's API to achieve this extraction.
 ## Configuration
 The configuration exists on the Ratpack root folder (src/main/java/resources) on a file called **config.json**. There 
 are other ways to provision this config in Ratpack but I chose this one. I left the the api key there so it can be 
-easily tested but it should be provided by the environment and not hard coded on production.
+easily tested but it should be provided by the environment and not hard coded in production.
 
 
 
