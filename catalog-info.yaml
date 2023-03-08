@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
-  name: Time Zone Calculator
+  name: Time-Zone-Calculator
   tags:
     - "cluster:inergank"
     - "project:Time Zoe"
