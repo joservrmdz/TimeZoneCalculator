@@ -4,7 +4,7 @@ metadata:
   name: TimeZoneCalculator
   tags:
     - "cluster:inergank"
-    - "project:Time Zoe"
+    - "project:TimeZone"
     - "contains-pii:false"
     - "tier:1"
 spec:
