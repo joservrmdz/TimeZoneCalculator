@@ -1,0 +1,10 @@
+site_name: 'TimeZoneCalculator'
+site_description: 'Main documentation for TimeZoneCalculator'
+repo_url: https://github.com/joservrmdz/TimeZoneCalculator
+edit_uri: edit/master/docs
+
+plugins:
+  - techdocs-core
+
+nav:
+  - Overview:
