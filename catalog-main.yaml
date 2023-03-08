@@ -7,6 +7,6 @@ metadata:
     - "contains-pii:false"
     - "tier:1"
   annotations:
-    backstage.io/techdocs-ref: 
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: component
