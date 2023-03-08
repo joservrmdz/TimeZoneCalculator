@@ -4,8 +4,7 @@ metadata:
   name: TimeZoneCalculator
   tags:
     - "cluster:inergank"
-    - "project:TimeZone"
     - "contains-pii:false"
     - "tier:1"
 spec:
-  type: url
+  type: component
