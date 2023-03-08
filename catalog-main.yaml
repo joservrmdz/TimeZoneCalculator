@@ -6,5 +6,7 @@ metadata:
     - "cluster:inergank"
     - "contains-pii:false"
     - "tier:1"
+  annotations:
+    backstage.io/techdocs-ref: 
 spec:
   type: component
